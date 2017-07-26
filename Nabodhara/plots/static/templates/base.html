@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!--DOCTYPE html -->
+<html>
+<head>
+<title>{% block head_title %}Nobodhara{% endblock head_title %}</title>
+<link rel="icon" href="{% static 'img/favicon.ico' %}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel='stylesheet' href='{% static "css/bootstrap.min.css" %}' />
+<link rel='stylesheet' href='{% static "css/flat-ui.css" %}' />
+<link rel='stylesheet' href='{% static "css/base.css" %}' />
+<link rel='stylesheet' href='{% static "css/animate.css" %}' />
+<script href={% static 'js/flat-ui.min.js' %}></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="logged-out">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'plot:home' %}">Nobodhara</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'plot:home' %}">Home</a></li>
+        <li><a href="{% url 'plot:home' %}#contact">Contact</a></li>
+        <li><a href="{% url 'plot:home' %}#aboutsection">About</a></li>
+        {% if request.user.is_authenticated %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Forms <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/forms/applicant">Applicant</a></li>
+            <li><a href="/forms/booking">Booking</a></li>
+            <li><a href="/forms/plot">Plot</a></li></ul>
+       {% endif %}
+          </li>
+      {% if request.user.is_authenticated %}
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-2" aria-hidden="true"></i>{% if request.user.first_name or request.user.last_name %} {{ request.user.first_name }} {% else %}
+        {{ request.user.username }}{% endif %} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/account/{{ request.user.id }}">Account</a></li>
+              <li><a href="/accounts/logout/">Log out</a></li></ul>
+       </li>
+           {% else %}
+                <li><a href="/accounts/login/" ><i class="fa fa-sign-in fa-2" aria-hidden="true"></i> Login</a></li>
+          {% endif %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+    {% block content %}
+
+
+    {% endblock content %}
+
+<br>
+
+     <!-- FOOTER -->
+<div class="clearfix"></div>
+<div class="navbar-static-bottom">
+<footer>
+          <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 footerleft ">
+        <div class="logofooter"> Logo</div>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+        <p><i class="fa fa-map-pin"></i> 210, Address Tower, Uttara sec 7, Dhaka - 110085, Bangladesh</p>
+
+      </div>
+      <div class="col-md-2 col-sm-6 paddingtop-bottom">
+        <h6 class="heading7">GENERAL LINKS</h6>
+        <ul class="footer-ul">
+          <li><a href="#"> Privacy Policy</a></li>
+          <li><a href="#"> Terms & Conditions</a></li>
+          <li><a href="#"> Frequently Ask Questions</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3-offset-3 col-sm-6 paddingtop-bottom">
+
+        <ul class="footer-ul">
+            <li><a href="https://www.facebook.com/facebook"><i class="fa fa-facebook fa-4x" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        <br><br>
+        <a href="#"><i class="fa fa-arrow-circle-o-up fa-5x" style="float: right; color: #fff"></i></a>
+    </div>
+  </div>
+          <div id="footer" class="bottom-menu bottom-menu">
+        <div class="copyright">
+  <div class="container">
+    <div class="col-md-6">
+      <p>© 2017 Nobodhara, Inc.</p>
+    </div>
+    <div class="col-md-6">
+      <ul class="bottom_ul">
+        <li><a href="#">nobodhara.com</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Faq's</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Site Map</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+    </div>
+    </footer>
+</div>
+<script src="{% static 'js/jquery.min.js' %}">
+</script>
+<script src="{% static 'js/flat-ui.min.js' %}"></script>
+</body>
+
+</html>
+

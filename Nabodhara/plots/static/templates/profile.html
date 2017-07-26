@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br><br>
+    <div class="container">
+      <table class="table table-bordered">
+  <thead class="thead-inverse" >
+    <tr>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> User name</td>
+      <td> {{ user.username |default_if_none:"" }}</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td> First name</td>
+      <td>{{ user.first_name }}</td>
+    </tr>
+    <tr>
+           <tr>
+      <th scope="row">1</th>
+      <td> last name </td>
+      <td>  {{ user.last_name |default_if_none:""  }}</td>
+    </tr>
+           <tr>
+      <th scope="row">1</th>
+      <td> Email </td>
+      <td> {{user.email |default_if_none:""}}</td>
+    </tr>
+  </tbody>
+      </table>
+    </div>
+
+    <br><br>
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Applicant Information</h2>
+<div class="container">
+    <img src='{{ instance.profile_picture.url }}'  style="width:200px;height:200px;">
+    <br>
+    <table class="table table-bordered">
+  <thead class="thead-inverse" style="background: #2C3E50; text-emphasis-color: #ffffff">
+    <tr>
+      <th>#</th>
+      <th>&emsp;</th>
+      <th>&emsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> Applicants name(Bangla) </td>
+      <td> {{ instance.applicants_name_bangla|default_if_none:""  }}</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td> Applicants name </td>
+      <td>{{ instance.applicants_name|default_if_none:""   }}</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td> Fathers name(Bangla) </td>
+      <td>{{ instance.fathers_name_bangla|default_if_none:""   }}</td>
+    </tr>
+  <tr>
+      <th scope="row">4</th>
+      <td>Fathers name </td>
+      <td>{{ instance.fathers_name|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">5</th>
+      <td> Mothers name(Bangla) </td>
+      <td>{{ instance.mothers_name_bangla|default_if_none:""   }}</td>
+    </tr>
+  <tr>
+      <th scope="row">6</th>
+      <td> Mothers name </td>
+      <td>{{ instance.mothers_name|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">7</th>
+      <td> Spouses name(Bangla) </td>
+      <td> {{ instance.spouses_name_bangla|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">8</th>
+      <td> Spouses name </td>
+      <td>{{ instance.spouses_name|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">9</th>
+      <td> Other name </td>
+      <td>{{ instance.other_name|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">10</th>
+      <td> Mobile number </td>
+      <td>{{ instance.mobile_number|default_if_none:""  }}</td>
+    </tr>
+ <tr>
+      <th scope="row">11</th>
+      <td> Present address </td>
+      <td>{{ instance.present_address|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">12</th>
+      <td> Permanent address </td>
+      <td>{{ instance.permanent_address|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">13</th>
+      <td> Nationality </td>
+      <td>{{ instance.nationality|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">14</th>
+      <td> Religion </td>
+      <td> {{ instance.religion|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">15</th>
+      <td> National ID </td>
+      <td> {{ instance.national_ID|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">16</th>
+      <td> Date of birth </td>
+      <td> {{ instance.date_of_birth|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">17</th>
+      <td> Passport no </td>
+      <td> {{ instance.passport_no|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">18</th>
+      <td> Profession </td>
+      <td> {{ instance.profession|default_if_none:""  }} </td>
+    </tr>
+   <tr>
+      <th scope="row">19</th>
+      <td> Website </td>
+       <td><a href={{ instance.website }}>{{ instance.website|default_if_none:""  }}</a></td>
+    </tr>
+      <tr>
+      <th scope="row">20</th>
+      <td> Nominees name </td>
+       <td> {{ instance.nominees_name|default_if_none:""  }}</td>
+    </tr>
+      <tr>
+      <th scope="row">21</th>
+      <td> Nominess relationship with applicant </td>
+       <td>{{ instance.nominess_relationship_with_applicant|default_if_none:""  }}</td>
+    </tr>
+    <tr>
+      <th scope="row">22</th>
+      <td> Nominees address </td>
+       <td>{{ instance.nominees_address|default_if_none:""  }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+     <div class="pull-right">
+         {% if request.user.is_authenticated %}
+        <a href={% url 'plot:applicantupdate' pk=instance.pk %}>
+            <button type="button" class="btn btn-success">Edit</button>
+        </a>
+        <a href={% url 'plot:applicantdelete' pk=instance.pk %}>
+            <button type="button" class="btn btn-danger">Delete</button>
+        </a>
+     {% endif %}
+    </div>
+{% endblock content %}

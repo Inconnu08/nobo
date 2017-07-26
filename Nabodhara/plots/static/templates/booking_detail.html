@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Booking Information</h2>
+ <table class="table table-bordered">
+  <thead class="thead-inverse" style="background: #2C3E50; text-emphasis-color: #ffffff">
+    <tr>
+      <th>#</th>
+      <th>&emsp;</th>
+      <th>&emsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> Date of booking </td>
+      <td> {{ instance.date_of_booking|default_if_none:""  }}</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td> Regular price </td>
+      <td>{{ instance.regular_price|default_if_none:""   }}</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td> Discount </td>
+      <td>{{ instance.discount|default_if_none:""   }}</td>
+    </tr>
+  <tr>
+      <th scope="row">4</th>
+      <td>Rate per katha</td>
+      <td>{{ instance.rate_per_katha|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">5</th>
+      <td> Total price </td>
+      <td>{{ instance.total_price|default_if_none:""   }}</td>
+    </tr>
+  <tr>
+      <th scope="row">6</th>
+      <td>Total price(in words)</td>
+      <td>{{ instance.total_price_in_words|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">7</th>
+      <td> Booking money </td>
+      <td> {{ instance.booking_money|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">8</th>
+      <td>Down payment</td>
+      <td>{{ instance.down_payment|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">9</th>
+      <td>Total payment</td>
+      <td>{{ instance.total_payment|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">10</th>
+      <td>Total payment(in words)</td>
+      <td>{{ instance.total_payment_in_words|default_if_none:""  }}</td>
+    </tr>
+ <tr>
+      <th scope="row">11</th>
+      <td>Rest Amount</td>
+      <td>{{ instance.rest_amount|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">12</th>
+      <td>Rest Amount(in words)</td>
+      <td>{{ instance.rest_amount_in_words|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">13</th>
+      <td>Mode of payment</td>
+      <td>{{ instance.mode_of_payement|default_if_none:""  }}</td>
+    </tr>
+  <tr>
+      <th scope="row">14</th>
+      <td>One time</td>
+      <td> {{ instance.one_time|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">15</th>
+      <td>Installment</td>
+      <td> {{ instance.installment|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">16</th>
+      <td>No of installment</td>
+      <td> {{ instance.no_of_installment|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">17</th>
+      <td>Per installment</td>
+      <td> {{ instance.per_installment|default_if_none:""  }}</td>
+    </tr>
+   <tr>
+      <th scope="row">18</th>
+      <td>In word</td>
+      <td> {{ instance.in_word|default_if_none:""  }} </td>
+    </tr>
+   <tr>
+      <th scope="row">19</th>
+      <td>Booked by</td>
+       <td><a href={{ instance.booked_by.get_absolute_url }}>{{ instance.booked_by|default_if_none:""  }}</a></td>
+    </tr>
+  </tbody>
+</table>
+
+ <div class="pull-right">
+   {% if request.user.is_authenticated %}
+        <a href={% url 'plot:bookingupdate' pk=instance.pk %}>
+            <button type="button" class="btn btn-success">Edit</button>
+        </a>
+        <a href={% url 'plot:bookingdelete' pk=instance.pk %}>
+            <button type="button" class="btn btn-danger">Delete</button>
+        </a>
+    {% endif %}
+ </div>
+{% endblock content %}
+

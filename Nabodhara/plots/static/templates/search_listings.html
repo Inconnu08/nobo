@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+ <div class="container">
+<h3>Search Results for: {{ value }}</h3>
+ <br>
+{% if object_list %}
+{% for obj in object_list %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary">
+              <div class="panel-heading" style="background-color: #2c3e50"><a style="color: #ffffff" href='{{ obj.get_absolute_url }}'>Plot:{{ obj.plot_no }} Road:{{ obj.road_no }}</a></div>
+              {% if obj.booking_info.booked_by == None %}
+                  <div class="panel-body" style="background-color: rgba(20,181,54,0.2);"><a style="color: #263546" href="{{ obj.get_absolute_url }}">Available!</a></div>
+              {% else %}
+                  <div class="panel-body" style="background-color: rgba(181,25,31,0.21);"><a style="color: #263546" href="{{ obj.get_absolute_url }}">Booked by: {{ obj.booking_info}}</a></div>
+              {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+    <div class="pagination" style="float: right">
+    <ul class="pagination-inverse">
+    <li class="previous-inverse">
+        {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"> <i class="fa fa-chevron-circle-left fa-3"></i></a>
+        {% endif %}
+    </li>
+    <li class="active-inverse">
+        <a> Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.</a>
+    </li>
+    <li class="next-inverse">
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"> <i class="fa fa-chevron-circle-right fa-3"></i></a>
+        {% endif %}
+    </li>
+    </ul>
+</div>
+{% else %}
+    <br>
+<p>No plots found.</p>
+    <br><br><br><br>
+{% endif %}
+
+
+</div>
+{% endblock %}

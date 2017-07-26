@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Plot form</title>
+</head>
+{% block content %}
+
+    <div class="container">
+        <h4>Plot form</h4>
+        {% load crispy_forms_tags %}
+            <form action="" method="POST">
+            {% crispy form %}
+    </div>
+{% endblock %}
